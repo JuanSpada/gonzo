@@ -8,6 +8,7 @@
     "https-proxy-agent": "^7.0.6",
     "p-queue": "^8.1.0"
   },
+  "type": "module",
   "scripts": {
     "start": "node index.js"
   },
