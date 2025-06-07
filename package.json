@@ -5,6 +5,8 @@
     "chalk": "^5.4.1",
     "cheerio": "^1.0.0",
     "express": "^5.1.0",
+    "express-rate-limit": "^7.5.0",
+    "helmet": "^8.1.0",
     "https-proxy-agent": "^7.0.6",
     "p-queue": "^8.1.0"
   },

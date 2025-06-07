@@ -1,6 +1,18 @@
-const express = require("express");
-const app = express();
 import helmet from "helmet";
+import express from "express";
+import { rateLimit } from 'express-rate-limit'
+
+const app = express();
+
+const limiter = rateLimit({
+	windowMs: 15 * 60 * 1000, // 15 minutes
+	limit: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes).
+	standardHeaders: 'draft-8', // draft-6: `RateLimit-*` headers; draft-7 & draft-8: combined `RateLimit` header
+	legacyHeaders: false, // Disable the `X-RateLimit-*` headers.
+})
+
+// Apply the rate limiting middleware to all requests.
+app.use(limiter)
 
 app.use(helmet());
 app.use(express.json()); // Para leer JSON body
@@ -8,21 +20,6 @@ app.use(express.urlencoded({ extended: true })); // Para leer form-urlencoded bo
 
 const port = 3000;
 
-// app.use((req, res, next) => {
-//   const start = Date.now();
-//   res.on("finish", () => {
-//     const duration = Date.now() - start;
-//     // Use req.ip to get the real client IP
-//     console.log(
-//       `[${new Date().toISOString()}] ${req.ip} ${req.method} ${
-//         req.originalUrl
-//       } ${res.statusCode} ${duration}ms User-Agent: ${
-//         req.headers["user-agent"]
-//       }`
-//     );
-//   });
-//   next();
-// });
 app.use((req, res, next) => {
   const start = Date.now();
 
