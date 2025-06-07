@@ -9,7 +9,7 @@ import axios from "axios";
 const endpoint =
   "http://ec2-15-228-158-129.sa-east-1.compute.amazonaws.com/gonzo";
 const totalRequests = 50000;
-const timeoutMs = 30000;
+const timeoutMs = 60000;
 const concurrency = 200;
 
 // Estadísticas mejoradas
@@ -26,16 +26,15 @@ const stats = {
 };
 
 // Cola para control de concurrencia
-
 const queue = new PQueue({
   concurrency,
   timeout: timeoutMs * 1.5, // Tiempo de espera para la cola
-  throwOnTimeout: true,
+  throwOnTimeout: false,
 });
 
 // Función para obtener un proxy aleatorio
 function getRandomProxy() {
-  return proxies[Math.floor(Math.random() * proxies.length)];
+  return `http://${proxies[Math.floor(Math.random() * proxies.length)]}`
 }
 
 // Función para mostrar estadísticas en tiempo real
@@ -125,7 +124,15 @@ async function testWithProxy(attempt, signal) {
     return true;
   } catch (err) {
     if (err.name === "CanceledError") return; // No contar como error
-
+if (err.name === "TimeoutError") {
+      stats.failed++;
+      stats.timeouts++;
+      stats.proxyFailures.set(proxy, (stats.proxyFailures.get(proxy) || 0) + 1);
+      if (attempt % 50 === 0) {
+        console.log(chalk.yellow(`[${attempt}] Timeout (p-queue) via ${proxy}`));
+      }
+      return false;
+    }
     stats.failed++;
     stats.proxyFailures.set(proxy, (stats.proxyFailures.get(proxy) || 0) + 1); // 👈 Registrar fallo
 
