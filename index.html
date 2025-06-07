@@ -1,0 +1,272 @@
+node geonode.js
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+   <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F6K19LWQEC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-F6K19LWQEC');
+</script>
+      <!-- basic -->
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <!-- mobile metas -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+      <!-- site metas -->
+      <title>Info Usados . Com</title>
+      <meta name="keywords" content="">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <!-- bootstrap css -->
+      <link rel="stylesheet" href="css/bootstrap.min.css">
+      <!-- style css -->
+      <link rel="stylesheet" href="css/style.css">
+      <!-- Responsive-->
+      <link rel="stylesheet" href="css/responsive.css">
+      <!-- fevicon -->
+      <link rel="icon" href="images/fevicon.png" type="image/gif" />
+      <!-- Scrollbar Custom CSS -->
+      <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
+      <!-- Tweaks for older IEs-->
+      <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+      <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+	   
+<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+
+
+<script language="javascript">
+$(document).ready(function(){
+    $("#categories_id").on('change', function () {
+        $("#categories_id option:selected").each(function () {
+            var categories_id = $(this).val();
+            $.post("subcategories.php", { categories_id: categories_id }, function(data) {
+                $("#subcategory").html(data);
+            });			
+        });
+   });
+});
+</script>	
+
+
+<script language="javascript">
+$(document).ready(function(){
+    $("#subcategory").on('change', function () {
+        $("#subcategory option:selected").each(function () {
+            var subcategory = $(this).val();
+            $.post("subanios.php", { subcategory: subcategory }, function(data) {
+                $("#subanios").html(data);
+            });			
+        });
+   });
+});
+</script>  
+
+
+
+<script language="javascript">
+$(document).ready(function(){
+    $("#subanios").on('change', function () {
+        $("#subanios option:selected").each(function () {
+            var subanios = $(this).val();
+            $.post("subproductos.php", { subanios: subanios }, function(data) {
+                $("#subproductos").html(data);
+            });			
+        });
+   });
+});
+</script>  
+
+<script type="text/javascript">
+//<![CDATA[
+function verificar(v){
+var p1 = document.getElementById('email_address');
+if( p1.value != v){
+document.getElementById('mensaje').innerHTML = "<img src=images/botones/rojo.png>";
+}else{
+document.getElementById('mensaje').innerHTML = "<img src=images/botones/verde.png>";
+}
+}
+//]]>
+</script>
+<script type="text/javascript">
+//<![CDATA[
+function verificar_pass(v2){
+var p1_pass = document.getElementById('password');
+if( p1_pass.value != v2){
+document.getElementById('mensaje_pass').innerHTML = "<img src=images/botones/rojo.png>";
+}else{
+document.getElementById('mensaje_pass').innerHTML = "<img src=images/botones/verde.png>";
+}
+}
+//]]>
+</script>
+
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+
+   </head>
+   <!-- body -->
+   <body class="main-layout">
+   
+      <!-- loader  -->
+      <!--div class="loader_bg">
+         <div class="loader"><img src="images/loading.gif" alt="#" /></div>
+      </div-->
+      <!-- end loader -->
+      <div id="mySidepanel" class="sidepanel">
+         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+         <a href="https://www.infousados.com/index.php?osCsid=478d85746ce79b758e9311087efc7394">INICIO </a>
+         <a href="https://www.infousados.com/login.php?osCsid=478d85746ce79b758e9311087efc7394">Su cuenta</a>
+         <!--a href="#service">Servicios  </a-->
+         <!--a href="#vehicles">Vehiculos</a-->
+         <!--a href="#testimonial">Testimonios</a-->
+         <a href="https://www.infousados.com/contact_us.php?osCsid=478d85746ce79b758e9311087efc7394">Contactenos</a>
+		 <a href="https://www.infousados.com/login.php?osCsid=478d85746ce79b758e9311087efc7394">Ingresar</a>
+      </div>
+      <!-- header -->
+      <header>
+         <!-- header inner -->
+         <div class="header">
+            <div class="container-fluid">
+               <div class="row">
+                  <div class="col-md-4 col-sm-4">
+                     <div class="logo">
+                        <a href="https://www.infousados.com/index.php?osCsid=478d85746ce79b758e9311087efc7394"><img src="images/logo.png" alt="#" /></a>
+                     </div>
+                  </div>
+                  <div class="col-md-8 col-sm-8">
+                     <div class="right_bottun">
+                        <ul class="conat_info d_none ">
+                           <li><a href="https://www.infousados.com/login.php?osCsid=478d85746ce79b758e9311087efc7394"><i class="fa fa-user" aria-hidden="true"></i></a></li>
+                           <li><a href="https://www.infousados.com/index.php?osCsid=478d85746ce79b758e9311087efc7394"><i class="fa fa-search" aria-hidden="true"></i></a></li>
+                        </ul>
+                        <button class="openbtn" onclick="openNav()"><img src="images/menu_icon.png" alt="#"/> </button> 
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </header>
+      <!-- end header inner -->
+      <!-- end header -->
+	        <!-- banner -->
+      <section class="banner_main">
+         <div id="banner1" class="carousel slide banner_slide" data-ride="carousel">
+
+            <div class="carousel-inner">
+               <div class="carousel-item active">
+                  <div class="container-fluid">
+                     <div class="carousel-caption">
+                        <div class="row">
+                           <div class="col-md-7 col-lg-5">
+                              <div class="text-bg">
+					 
+
+					 
+					 
+					 
+					 
+                                 <!--h1>Precios de Revista</h1>
+                                 <span>Actualizados</span> track-sinrevista.png
+                                 <a class="read_more" href="#">Contact Us</a-->
+                              </div>
+                           </div>
+                           <div class="col-md-12 col-lg-7">
+                              <div class="row">
+                                 <div class="col-md-6">
+                                    <div class="ban_track">
+					
+                                       <figure><img src="images/track-sinrevista.png" alt="#"/></figure>
+					                                   </div>
+                                 </div>
+                                 <div class="col-md-6">
+<h1>Recuperar contraseña</h1>
+
+
+<form name="password_forgotten" action="https://www.infousados.com/password_forgotten.php?action=process&amp;osCsid=478d85746ce79b758e9311087efc7394" method="post"><input type="hidden" name="formid" value="50dbd26a9fa44a33f9d60146e9c840b8" />
+<div class="contentContainer">
+  <div class="contentText">
+    <div>Ingrese su Email registrado, y siga las instrucciones por email, sino lo recibio, revisar casilla de SPAM</div>
+
+    <table border="0" width="100%" cellspacing="0" cellpadding="2">
+      <tr>
+        <td class="fieldKey">E-Mail:</td>
+        <td class="fieldValue"><input type="text" name="email_address" /></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="buttonSet">
+    <span class="buttonAction"><input type="submit" value="-- Recuperar --" alt="-- Recuperar --"></span>
+
+    <a class="unishop_submit" href="https://www.infousados.com/login.php?osCsid=478d85746ce79b758e9311087efc7394">Volver</a>  </div>
+</div>
+
+</form>
+
+ 
+                  </div>
+				  
+                                       </div>
+                                       <div class="col-md-12" align="center">
+                                        </div>
+                                    </form>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+
+            </div>
+
+         </div>
+   <!--  footer -->
+      <footer>
+         <div class="footer bottom_cross1">
+		             <div class="copyright">
+               <div class="container">
+                  <div class="row">
+                     <div class="col-md-12">
+                        <p>© Design by Desarrollos - Pablo Tri</p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </footer>
+      <!-- end footer -->
+ <!-- bodyContent //-->
+      <!-- Javascript files-->
+      <script src="js/jquery.min.js"></script>
+      <script src="js/popper.min.js"></script>
+      <script src="js/bootstrap.bundle.min.js"></script>
+      <script src="js/jquery-3.0.0.min.js"></script>
+      <!-- sidebar -->
+      <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+            <script>
+         function openNav() {
+           document.getElementById("mySidepanel").style.width = "250px";
+         }
+         
+         function closeNav() {
+           document.getElementById("mySidepanel").style.width = "0";
+         }
+      </script>
+<!-- Start: Copyright 2024 TraceMyIP.org Service Code (235238-08262024)- DO NOT MODIFY //-->
+<div id="elemID031021" style="line-height:16px;text-align:center;z-index:100000;"><script async type="text/javascript" src="//s3.tracemyip.org/vLg/lgUrl.php?pidnVar2=72922&amp;prtVar2=12&amp;stlVar2=1500~1724716303~14*2~0F5999*F7FFE6*537899*000000~1*0*1*0*0&amp;rgtype=4684NR-IPIB&amp;scvVar2=12"></script><noscript><a title="my ip address" href="https://www.tracemyip.org/"><img src="//s3.tracemyip.org/vLg/1500~1724716303~14*2~0F5999*F7FFE6*537899*000000~1*0*1*0*0/4684NR-IPIB/72922/12/12/ans/" alt="my ip address" referrerpolicy="no-referrer-when-downgrade" style="border:0px;"></a></noscript></div> 
+<!-- End: TraceMyIP.org Service Code //-->
+  	  
+	  
+   </body>
+</html>

@@ -4,7 +4,6 @@ import PQueue from "p-queue";
 import chalk from "chalk";
 import { HttpsProxyAgent } from "https-proxy-agent";
 import axios from "axios";
-// Lista mejorada de proxies (agregué más y eliminé algunos que no funcionan)
 
 const endpoint =
   "http://ec2-15-228-158-129.sa-east-1.compute.amazonaws.com/gonzo";

