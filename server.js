@@ -1,5 +1,8 @@
 const express = require("express");
 const app = express();
+import helmet from "helmet";
+
+app.use(helmet());
 app.use(express.json()); // Para leer JSON body
 app.use(express.urlencoded({ extended: true })); // Para leer form-urlencoded body
 
