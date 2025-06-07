@@ -8,9 +8,9 @@ import axios from "axios";
 
 const endpoint =
   "http://ec2-15-228-158-129.sa-east-1.compute.amazonaws.com/gonzo";
-const totalRequests = 50000;
+const totalRequests = 80000;
 const timeoutMs = 60000;
-const concurrency = 80000;
+const concurrency = 100000;
 
 // Estadísticas mejoradas
 const stats = {
